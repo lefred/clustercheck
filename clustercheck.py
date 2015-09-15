@@ -69,6 +69,8 @@ class clustercheck(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.send_header("Content-type", "text/html")
                 self.end_headers()
                 self.wfile.write("Percona XtraDB Cluster Node state could not be retrieved.")
+                res=()
+                opts.last_query_response = res
 
             elif res[0]['Value'] == '4' or (int(opts.available_when_donor) == 1 and res[0]['Value'] == '2'):
                 opts.last_query_result = res[0]['Value']
